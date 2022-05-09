@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc26a2040ef249048fe3bd0d1eed5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _informationAboutPiece: {fileID: 0}
+  _informationAboutPiece: {fileID: 3117735003175015134}
   _tangram: {fileID: 3117735004155266712}
 --- !u!114 &3117735004155266712
 MonoBehaviour:
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1089108c698f54c44b2bbf6df4cde8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _informationAboutPiece: {fileID: 0}
+  _informationAboutPiece: {fileID: 3117735003175015134}
 --- !u!1 &3117735003175015135
 GameObject:
   m_ObjectHideFlags: 0
