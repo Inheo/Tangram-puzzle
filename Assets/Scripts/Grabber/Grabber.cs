@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Interfaces.Events;
+using Assets.Interfaces.Events.Handlers;
 using static GrabberHelper;
 
 public class Grabber : MonoBehaviour
@@ -34,7 +34,7 @@ public class Grabber : MonoBehaviour
             _selectedObject = hit.rigidbody.transform;
             
             if(_selectedObject.TryGetComponent(out _dragAndDropHandler) == true)
-                _dragAndDropHandler.OnPickUp(GetWorldPositionMouse(_selectedObject));
+                _dragAndDropHandler.PickUp(GetWorldPositionMouse(_selectedObject));
             else
                 _selectedObject = null;
         }
@@ -44,14 +44,14 @@ public class Grabber : MonoBehaviour
     {
         Vector3 worldPosition = GetWorldPositionMouse(_selectedObject);
 
-        _dragAndDropHandler.OnDrag(worldPosition);
+        _dragAndDropHandler.Drag(worldPosition);
     }
 
     private void DropHandler()
     {
         Vector3 worldPosition = GetWorldPositionMouse(_selectedObject);
 
-        _dragAndDropHandler.OnDrag(worldPosition);
+        _dragAndDropHandler.Drop(worldPosition);
 
         _selectedObject = null;
         _dragAndDropHandler = null;

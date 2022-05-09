@@ -1,4 +1,4 @@
-namespace Assets.Interfaces.Events
+namespace Assets.Interfaces.Events.Handlers
 {
     public interface IDragAndDropHandler : IPickUpHandler, IDragHandler, IDropHandler
     {
