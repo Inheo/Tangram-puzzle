@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tangram : MonoBehaviour
 {
-    [SerializeField] private InformationAboutPieceOfTangram _informationAboutPieceOfTangram;
+    [SerializeField] private InformationAboutPiece _informationAboutPiece;
 
     public event System.Action OnPiecesEndInitialize;
 
@@ -13,7 +13,7 @@ public class Tangram : MonoBehaviour
 
     private void InitializePieces()
     {
-        var information = _informationAboutPieceOfTangram.PieceInformations;
+        var information = _informationAboutPiece.PieceInformations;
 
         for (var i = 0; i < information.Count; i++)
         {

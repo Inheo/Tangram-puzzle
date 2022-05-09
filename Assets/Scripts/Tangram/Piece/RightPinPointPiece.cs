@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class RightPointPieceOfTangram
+public class RightPinPointPiece
 {
     public readonly int PieceID;
     public readonly Vector3 Position;
 
     private int _currentPieceID = -1;
 
-    public RightPointPieceOfTangram(int pieceID, Vector3 position, int currentPieceID = -1)
+    public RightPinPointPiece(int pieceID, Vector3 position, int currentPieceID = -1)
     {
         PieceID = pieceID;
         Position = position;
