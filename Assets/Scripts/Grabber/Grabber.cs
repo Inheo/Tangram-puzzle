@@ -29,9 +29,9 @@ public class Grabber : MonoBehaviour
     {
         RaycastHit hit = CastRay();
 
-        if (hit.collider != null)
+        if (hit.rigidbody != null)
         {
-            _selectedObject = hit.collider.transform;
+            _selectedObject = hit.rigidbody.transform;
             
             if(_selectedObject.TryGetComponent(out _dragAndDropHandler) == true)
                 _dragAndDropHandler.OnPickUp(GetWorldPositionMouse(_selectedObject));
