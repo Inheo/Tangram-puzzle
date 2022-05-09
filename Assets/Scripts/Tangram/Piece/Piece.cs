@@ -1,15 +1,49 @@
+using Assets.Interfaces.Events.Emitters;
 using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    private RightPinPointPiece _rightPoint;
-    public Transform CachedTransform { get; private set; }
+    [SerializeField] private float _pinDistance = 2;
 
-    public int ID => CachedTransform.GetInstanceID();
+    private IDragAndDropEventEmitter _dragAndDropEventEmitter;
+    private RightPinPointPiece _rightPoint;
+    private Transform _transform;
+
+    public int ID => _transform.GetInstanceID();
 
     public void Initialize()
     {
-        CachedTransform = transform;
-        _rightPoint = new RightPinPointPiece(ID, CachedTransform.position);
+        _transform = transform;
+        _rightPoint = new RightPinPointPiece(ID, _transform.position);
+
+        _dragAndDropEventEmitter = GetComponent<IDragAndDropEventEmitter>();
+
+        _dragAndDropEventEmitter.OnPickUp += PickUp;
+        _dragAndDropEventEmitter.OnDrop += Drop;
+    }
+
+    private void OnDestroy()
+    {
+        _dragAndDropEventEmitter.OnPickUp -= PickUp;
+        _dragAndDropEventEmitter.OnDrop -= Drop;
+    }
+
+    public void PickUp()
+    {
+        _rightPoint.UnpinPieceOfTangram();
+    }
+
+    public void Drop()
+    {
+        if ((_rightPoint.Position - _transform.position).sqrMagnitude < _pinDistance)
+        {
+            Pin();
+        }
+    }
+
+    private void Pin()
+    {
+        _rightPoint.PinPieceOfTangram(ID);
+        _transform.position = _rightPoint.Position;
     }
 }
