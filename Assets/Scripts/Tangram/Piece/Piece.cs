@@ -2,16 +2,18 @@ using System.Collections;
 using Assets.Interfaces.Events.Emitters;
 using UnityEngine;
 
+[RequireComponent(typeof(PieceMover))]
 public class Piece : MonoBehaviour
 {
     [SerializeField] private float _pinDistance = 2;
-    [SerializeField] private PieceMover _pieceMover;
 
     private bool _canCollision = false;
 
+    private PieceMover _pieceMover;
+    private Transform _transform;
+
     private IDragAndDropEventEmitter _dragAndDropEventEmitter;
     private RightPinPointPiece _rightPoint;
-    private Transform _transform;
 
     public int ID => _transform.GetInstanceID();
 
@@ -20,6 +22,7 @@ public class Piece : MonoBehaviour
         _transform = transform;
         _rightPoint = new RightPinPointPiece(ID, _transform.position);
 
+        _pieceMover = GetComponent<PieceMover>();
         _dragAndDropEventEmitter = GetComponent<IDragAndDropEventEmitter>();
 
         _dragAndDropEventEmitter.OnPickUp += PickUp;
@@ -52,6 +55,10 @@ public class Piece : MonoBehaviour
         {
             Pin();
         }
+        else
+        {
+            _pieceMover.MoveToShufflePoint();
+        }
 
         StartCoroutine(EnableCanCollision());
     }
@@ -66,6 +73,8 @@ public class Piece : MonoBehaviour
     {
         _canCollision = true;
 
+        yield return null;
+        yield return null;
         yield return null;
         yield return null;
         yield return null;
