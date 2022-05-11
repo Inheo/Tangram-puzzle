@@ -28,12 +28,12 @@ public class Piece : MonoBehaviour
         _dragAndDropEventEmitter.OnDrop -= Drop;
     }
 
-    public void PickUp()
+    private void PickUp()
     {
         _rightPoint.UnpinPieceOfTangram();
     }
 
-    public void Drop()
+    private void Drop()
     {
         if ((_rightPoint.Position - _transform.position).sqrMagnitude < _pinDistance)
         {
