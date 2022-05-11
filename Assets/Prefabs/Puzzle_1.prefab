@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6516238027082615761}
   - component: {fileID: 1959911599198037947}
   - component: {fileID: 2790074509956918962}
-  - component: {fileID: 2588327216559678543}
   - component: {fileID: 3117735003279292467}
   - component: {fileID: 7840005653853672005}
   m_Layer: 0
@@ -33,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -0.0016326308, y: 0.179359, z: -0.8057924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1202744177397175674}
   m_Father: {fileID: 3228748925830949699}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,20 +103,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &2588327216559678543
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585936640980956561}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5907495093217552545, guid: d3120add4c767444fa3ebd3595622688, type: 3}
 --- !u!114 &3117735003279292467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pinDistance: 2
+  _pieceMover: {fileID: 7840005653853672005}
 --- !u!114 &7840005653853672005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dragYOffset: 0.4
   _dragZOffset: 0.4
+  _shufflePoint: {fileID: 3117735004479987439}
 --- !u!1 &2847685251430593017
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc26a2040ef249048fe3bd0d1eed5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _informationAboutPiece: {fileID: 3117735003175015134}
+  _pieceMovers:
+  - {fileID: 541377713891573377}
+  - {fileID: 7840005653853672005}
   _tangram: {fileID: 3117735004155266712}
 --- !u!114 &3117735004155266712
 MonoBehaviour:
@@ -207,7 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1089108c698f54c44b2bbf6df4cde8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _informationAboutPiece: {fileID: 3117735003175015134}
+  _pieces:
+  - {fileID: 3117735004466981707}
+  - {fileID: 3117735003279292467}
 --- !u!1 &3117735003175015135
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +209,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3117735003175015133}
-  - component: {fileID: 3117735003175015134}
   m_Layer: 0
-  m_Name: InformationAboutPieceOfTangram
+  m_Name: StartPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,23 +233,6 @@ Transform:
   m_Father: {fileID: 3228748925830949699}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3117735003175015134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3117735003175015135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa4755a4a83b4ae5a6a7d5382a1bb11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pieceInformation:
-  - _piece: {fileID: 3117735004466981707}
-    _startPoint: {fileID: 3117735005013405814}
-  - _piece: {fileID: 3117735003279292467}
-    _startPoint: {fileID: 3117735004479987439}
 --- !u!1 &3117735004479987432
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +295,52 @@ Transform:
   m_Father: {fileID: 3117735003175015133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5608079589344188715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9018112766074549053}
+  - component: {fileID: 900025990475447227}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9018112766074549053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608079589344188715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2327833979391334196}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &900025990475447227
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608079589344188715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4909297279678415406, guid: d3120add4c767444fa3ebd3595622688, type: 3}
 --- !u!1 &6812839527763637851
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +424,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7001861418906180831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202744177397175674}
+  - component: {fileID: 4946365196295418911}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1202744177397175674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001861418906180831}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 787947877247832271}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &4946365196295418911
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001861418906180831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5907495093217552545, guid: d3120add4c767444fa3ebd3595622688, type: 3}
 --- !u!1 &9099646961832512717
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +482,6 @@ GameObject:
   - component: {fileID: 837775468193587275}
   - component: {fileID: 544220645302883657}
   - component: {fileID: 2916268077363620398}
-  - component: {fileID: 7978167701587492957}
   - component: {fileID: 3117735004466981707}
   - component: {fileID: 541377713891573377}
   m_Layer: 0
@@ -437,7 +502,8 @@ Transform:
   m_LocalPosition: {x: -0.023842216, y: 0.179359, z: 0.6857216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9018112766074549053}
   m_Father: {fileID: 3228748925830949699}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -507,20 +573,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7978167701587492957
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099646961832512717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4909297279678415406, guid: d3120add4c767444fa3ebd3595622688, type: 3}
 --- !u!114 &3117735004466981707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pinDistance: 2
+  _pieceMover: {fileID: 541377713891573377}
 --- !u!114 &541377713891573377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,3 +601,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dragYOffset: 0.4
   _dragZOffset: 0.4
+  _shufflePoint: {fileID: 3117735005013405814}
