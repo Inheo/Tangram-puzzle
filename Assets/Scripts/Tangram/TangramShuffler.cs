@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TangramShuffler : MonoBehaviour
 {
-    [SerializeField] private InformationAboutPiece _informationAboutPiece;
+    [SerializeField] private PieceMover[] _pieceMovers;
     [SerializeField] private Tangram _tangram;
 
     private void Awake()
@@ -17,11 +17,9 @@ public class TangramShuffler : MonoBehaviour
 
     private void Shuffle()
     {
-        var pieceInformation = _informationAboutPiece.PieceInformations;
-        
-        for (var i = 0; i < pieceInformation.Count; i++)
+        for (var i = 0; i < _pieceMovers.Length; i++)
         {
-            pieceInformation[i].Piece.transform.position = pieceInformation[i].StartPoint.transform.position;
+            _pieceMovers[i].MoveToShufflePoint();
         }
     }
 }

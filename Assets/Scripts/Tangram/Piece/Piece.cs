@@ -1,9 +1,13 @@
+using System.Collections;
 using Assets.Interfaces.Events.Emitters;
 using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
     [SerializeField] private float _pinDistance = 2;
+    [SerializeField] private PieceMover _pieceMover;
+
+    private bool _canCollision = false;
 
     private IDragAndDropEventEmitter _dragAndDropEventEmitter;
     private RightPinPointPiece _rightPoint;
@@ -28,22 +32,44 @@ public class Piece : MonoBehaviour
         _dragAndDropEventEmitter.OnDrop -= Drop;
     }
 
-    public void PickUp()
+    private void OnTriggerEnter(Collider other)
+    {
+        if(_canCollision && other.attachedRigidbody.TryGetComponent(out Piece piece))
+        {
+            _pieceMover.MoveToShufflePoint();
+            _rightPoint.UnpinPieceOfTangram();
+        }
+    }
+
+    private void PickUp()
     {
         _rightPoint.UnpinPieceOfTangram();
     }
 
-    public void Drop()
+    private void Drop()
     {
         if ((_rightPoint.Position - _transform.position).sqrMagnitude < _pinDistance)
         {
             Pin();
         }
+
+        StartCoroutine(EnableCanCollision());
     }
 
     private void Pin()
     {
         _rightPoint.PinPieceOfTangram(ID);
         _transform.position = _rightPoint.Position;
+    }
+
+    private IEnumerator EnableCanCollision()
+    {
+        _canCollision = true;
+
+        yield return null;
+        yield return null;
+        yield return null;
+
+        _canCollision = false;
     }
 }
