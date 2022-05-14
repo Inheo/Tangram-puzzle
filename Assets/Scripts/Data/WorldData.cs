@@ -15,6 +15,7 @@ namespace Scripts.Data
         public void CompleteLevel()
         {
             Level++;
+            PlayerProgress.Save();
         }
     }
 }
