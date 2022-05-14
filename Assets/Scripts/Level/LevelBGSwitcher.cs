@@ -6,10 +6,9 @@ public class LevelBGSwitcher
 
     private Material _material;
 
-    public LevelBGSwitcher(Material material, Texture2D texture)
+    public LevelBGSwitcher(Material material)
     {
         _material = material;
-        SetTexture(texture);
     }
 
     public void SetTexture(Texture2D texture)
