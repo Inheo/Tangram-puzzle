@@ -15,6 +15,8 @@ public class Piece : MonoBehaviour
     private IDragAndDropEventEmitter _dragAndDropEventEmitter;
     private RightPinPointPiece _rightPoint;
 
+    public event System.Action OnPin;
+
     public int ID => _transform.GetInstanceID();
 
     public void Initialize()
@@ -67,18 +69,23 @@ public class Piece : MonoBehaviour
     {
         _rightPoint.PinPieceOfTangram(ID);
         _transform.position = _rightPoint.Position;
+        OnPin.Invoke();
     }
 
     private IEnumerator EnableCanCollision()
     {
         _canCollision = true;
 
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
+        yield return DelayFrame(5);
 
         _canCollision = false;
+    }
+
+    private IEnumerator DelayFrame(int countFrame)
+    {
+        for (var i = 0; i < countFrame; i++)
+        {
+            yield return null;
+        }
     }
 }
