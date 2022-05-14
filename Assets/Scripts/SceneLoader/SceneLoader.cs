@@ -9,9 +9,9 @@ public class SceneLoader
 
     public event Action SceneLoaded;
 
-    private  MonoBehaviour _coroutineStarter;
+    private  IStartCoroutine _coroutineStarter;
 
-    public SceneLoader(MonoBehaviour coroutineStarter)
+    public SceneLoader(IStartCoroutine coroutineStarter)
     {
         _coroutineStarter = coroutineStarter;
     }
