@@ -1,6 +1,6 @@
 using System.Collections;
-using Assets.Interfaces.Events.Emitters;
 using UnityEngine;
+using Assets.Interfaces.Events.Emitters;
 
 [RequireComponent(typeof(PieceMover))]
 public class Piece : MonoBehaviour
@@ -15,7 +15,10 @@ public class Piece : MonoBehaviour
     private IDragAndDropEventEmitter _dragAndDropEventEmitter;
     private RightPinPointPiece _rightPoint;
 
+    public event System.Action OnPin;
+
     public int ID => _transform.GetInstanceID();
+    public bool PinRight => _rightPoint.IsRightPin;
 
     public void Initialize()
     {
@@ -37,10 +40,9 @@ public class Piece : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_canCollision && other.attachedRigidbody.TryGetComponent(out Piece piece))
+        if (_canCollision && other.attachedRigidbody.TryGetComponent(out Piece piece))
         {
-            _pieceMover.MoveToShufflePoint();
-            _rightPoint.UnpinPieceOfTangram();
+            CouldNotPin();
         }
     }
 
@@ -57,7 +59,8 @@ public class Piece : MonoBehaviour
         }
         else
         {
-            _pieceMover.MoveToShufflePoint();
+            CouldNotPin();
+            return;
         }
 
         StartCoroutine(EnableCanCollision());
@@ -67,18 +70,29 @@ public class Piece : MonoBehaviour
     {
         _rightPoint.PinPieceOfTangram(ID);
         _transform.position = _rightPoint.Position;
+        OnPin.Invoke();
+    }
+
+    private void CouldNotPin()
+    {
+        _pieceMover.MoveToShufflePoint();
+        _rightPoint.UnpinPieceOfTangram();
     }
 
     private IEnumerator EnableCanCollision()
     {
         _canCollision = true;
 
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
+        yield return DelayFrame(5);
 
         _canCollision = false;
+    }
+
+    private IEnumerator DelayFrame(int countFrame)
+    {
+        for (var i = 0; i < countFrame; i++)
+        {
+            yield return null;
+        }
     }
 }
