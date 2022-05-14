@@ -1,17 +1,16 @@
 using System;
 using System.Collections;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
 {
     private string _currentScene;
 
-    public event Action SceneLoaded;
+    public event Action OnSceneLoaded;
 
-    private  MonoBehaviour _coroutineStarter;
+    private  IStartCoroutine _coroutineStarter;
 
-    public SceneLoader(MonoBehaviour coroutineStarter)
+    public SceneLoader(IStartCoroutine coroutineStarter)
     {
         _coroutineStarter = coroutineStarter;
     }
@@ -30,16 +29,16 @@ public class SceneLoader
 
     private IEnumerator LoadScene(string sceneName)
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += SceneLoaded;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         yield return null;
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneLoaded?.Invoke();
+        SceneManager.sceneLoaded -= SceneLoaded;
+        OnSceneLoaded?.Invoke();
     }
 }
