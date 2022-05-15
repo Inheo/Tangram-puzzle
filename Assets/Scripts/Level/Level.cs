@@ -15,6 +15,7 @@ public class Level : MonoBehaviour
     private WorldData _playerData;
 
     public event System.Action OnLevelCompleted;
+    public event System.Action OnReadyLevelRestart;
 
     public static Level Instance { get; private set; }
 
@@ -72,5 +73,9 @@ public class Level : MonoBehaviour
     {
         _playerData.CompleteLevel();
         OnLevelCompleted?.Invoke();
+
+        // TODO: add vfx player
+
+        OnReadyLevelRestart?.Invoke();
     }
 }
