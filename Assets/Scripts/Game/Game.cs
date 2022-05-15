@@ -10,7 +10,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void Start()
     {
-        _sceneLoader = new SceneLoader(this);
+        Initialize();
 
         StartLevel();
     }
@@ -18,6 +18,11 @@ public class Game : MonoBehaviour, IStartCoroutine
     private void OnDestroy()
     {
         UnsubscribeEvent();
+    }
+
+    private void Initialize()
+    {
+        _sceneLoader = new SceneLoader(this);
     }
 
     private void StartLevel()
