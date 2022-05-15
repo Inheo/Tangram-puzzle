@@ -42,11 +42,11 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void SubscribeEvent()
     {
-
+        _level.OnLevelCompleted += StartLevel;
     }
 
     private void UnsubscribeEvent()
     {
-        
+        _level.OnLevelCompleted -= StartLevel;
     }
 }
