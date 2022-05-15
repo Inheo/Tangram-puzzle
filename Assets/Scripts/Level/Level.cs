@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     private LevelSettingsItem _levelConfig;
     private WorldData _playerData;
 
-    private System.Action OnLevelCompleted;
+    public event System.Action OnLevelCompleted;
 
     public static Level Instance { get; private set; }
 
