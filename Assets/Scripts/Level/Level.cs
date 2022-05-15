@@ -21,7 +21,7 @@ public class Level : MonoBehaviour
 
     private void Awake()
     {
-        Instance = null;
+        Instance = this;
     }
 
     private void Start()
