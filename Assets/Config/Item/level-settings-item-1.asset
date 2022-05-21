@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86efc9245f8b24fbdae08a99cf488083, type: 3}
   m_Name: level-settings-item-1
   m_EditorClassIdentifier: 
-  _tangramPrefab: {fileID: 0}
-  _bgTexture: {fileID: 0}
+  _tangramPrefab: {fileID: 3117735004155266712, guid: 34227f0e677a84d69b96a8441d0ee5a3,
+    type: 3}
+  _bgTexture: {fileID: 2800000, guid: a66469597bcfcdb4aa6ae257fd35e7dc, type: 3}
