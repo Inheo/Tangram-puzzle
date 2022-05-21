@@ -1,8 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IStartCoroutine
 {
+    [SerializeField] private FadePanel _fadePanel;
+    
     private const string GAME_PARAMETER = "Game";
     private SceneLoader _sceneLoader;
 
@@ -27,6 +28,8 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
+        _fadePanel.Show();
+
         _sceneLoader.OnSceneLoaded += SceneLoaded;
 
         _sceneLoader.TryLoadLevel(GAME_PARAMETER);
@@ -37,6 +40,7 @@ public class Game : MonoBehaviour, IStartCoroutine
         _sceneLoader.OnSceneLoaded -= SceneLoaded;
 
         _level = Level.Instance;
+        _fadePanel.Hide();
         SubscribeEvent();
     }
 

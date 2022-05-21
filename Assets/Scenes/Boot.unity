@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f345c933c643049b781e641442ea055d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadePanel: {fileID: 1265172973}
 --- !u!4 &39916844
 Transform:
   m_ObjectHideFlags: 0
@@ -619,6 +620,7 @@ GameObject:
   - component: {fileID: 1265172972}
   - component: {fileID: 1265172971}
   - component: {fileID: 1265172970}
+  - component: {fileID: 1265172973}
   m_Layer: 5
   m_Name: BlinkPanel
   m_TagString: Untagged
@@ -696,3 +698,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265172968}
   m_CullTransparentMesh: 1
+--- !u!114 &1265172973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265172968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed492fb11f12646058fa05fd84135052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 0.2
