@@ -56,7 +56,7 @@ public class Level : MonoBehaviour
 
     private void SpawnTangram()
     {
-        _tangram = _spawner.Instantiate(_levelConfig.TangramPrefab);
+        _tangram = _spawner.Instantiate(_levelConfig.TangramPrefab, transform);
     }
 
     private void Subscribe()
