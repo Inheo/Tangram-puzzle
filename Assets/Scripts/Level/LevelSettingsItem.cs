@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "level-settings-item", menuName = "LevelSettingsItem")]
 public class LevelSettingsItem : ScriptableObject
 {
     [SerializeField] private Tangram _tangramPrefab;

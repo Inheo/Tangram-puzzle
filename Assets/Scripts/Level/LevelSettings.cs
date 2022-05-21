@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "level-settings", menuName = "LevelSettings")]
 public class LevelSettings : ScriptableObject
 {
     [SerializeField] private LevelSettingsItem[] _levelSettings;
