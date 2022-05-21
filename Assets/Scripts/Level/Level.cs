@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] Material _bgMaterial;
+    [SerializeField] private Material _bgMaterial;
+    [SerializeField] private LevelSettings _levelSettings;
 
     private Tangram _tangram;
 
     private LevelBGSwitcher _bgSwitcher;
     private LevelSpawner _spawner;
-    private LevelSettings _levelSettings;
 
     private LevelSettingsItem _levelConfig;
     private WorldData _playerData;
