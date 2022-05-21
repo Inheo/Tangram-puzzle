@@ -25,7 +25,6 @@ public class Tangram : MonoBehaviour
         for (var i = 0; i < _pieces.Length; i++)
         {
             _pieces[i].Initialize();
-            _pieces[i].OnPin += CheckWin;
         }
 
         OnPiecesEndInitialize?.Invoke();
