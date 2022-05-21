@@ -9,7 +9,7 @@ public class LevelSettings : ScriptableObject
     {
         get
         {
-            index = index >= _levelSettings.Length ? _levelSettings.Length - 1 : index;
+            index = index >= _levelSettings.Length ? index % _levelSettings.Length : index;
             return _levelSettings[index];
         }
     }
