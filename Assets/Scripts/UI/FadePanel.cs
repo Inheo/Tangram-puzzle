@@ -22,4 +22,9 @@ public class FadePanel : MonoBehaviour
     {
         _canvasGroup.DOFade(0, _animationDuration);
     }
+
+    public void Blink()
+    {
+        _canvasGroup.DOFade(0, _animationDuration).From(1);
+    }
 }
