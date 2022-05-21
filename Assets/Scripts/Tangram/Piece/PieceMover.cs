@@ -18,7 +18,7 @@ public class PieceMover : MonoBehaviour, IDragAndDropHandler, IDragAndDropEventE
     public event System.Action OnDrag;
     public event System.Action OnDrop;
 
-    private void Start()
+    private void Awake()
     {
         _transform = transform;
     }
