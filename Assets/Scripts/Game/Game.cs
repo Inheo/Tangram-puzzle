@@ -9,6 +9,8 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private Level _level;
 
+    public event System.Action OnStartLevel;
+
     private void Start()
     {
         Initialize();
@@ -28,6 +30,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
+        OnStartLevel?.Invoke();
         _fadePanel.Show();
 
         _sceneLoader.OnSceneLoaded += SceneLoaded;
