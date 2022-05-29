@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class VFXPlayer : MonoBehaviour
+public class WinVFX : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _vfx;
 
