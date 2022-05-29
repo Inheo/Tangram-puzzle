@@ -4,6 +4,16 @@ public class WinVFX : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _vfx;
 
+    private void Start()
+    {
+        Level.Instance.OnLevelCompleted += Play;
+    }
+
+    private void OnDestroy()
+    {
+        Level.Instance.OnLevelCompleted -= Play;
+    }
+
     public float GetMiddleLifeTimeVFX()
     {
         float result = 0;
