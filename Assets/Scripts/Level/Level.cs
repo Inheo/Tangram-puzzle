@@ -36,7 +36,6 @@ public class Level : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instance = null;
         Unsubscribe();
     }
 
@@ -73,8 +72,6 @@ public class Level : MonoBehaviour
     {
         _playerData.CompleteLevel();
         OnLevelCompleted?.Invoke();
-
-        // TODO: add vfx player
 
         OnReadyLevelRestart?.Invoke();
     }
