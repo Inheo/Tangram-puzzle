@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour, IStartCoroutine
 {
     [SerializeField] private FadePanel _fadePanel;
+    [SerializeField] private FadePanel _winPanel;
+    [SerializeField] private Button _nextButton;
     
     private const string GAME_PARAMETER = "Game";
     private SceneLoader _sceneLoader;
@@ -16,6 +19,7 @@ public class Game : MonoBehaviour, IStartCoroutine
         Initialize();
 
         StartLevel();
+        _nextButton.onClick.AddListener(StartLevel);
     }
 
     private void OnDestroy()
@@ -31,6 +35,8 @@ public class Game : MonoBehaviour, IStartCoroutine
     private void StartLevel()
     {
         OnStartLevel?.Invoke();
+
+        _winPanel.Hide(true);
         _fadePanel.Show();
 
         _sceneLoader.OnSceneLoaded += SceneLoaded;
@@ -49,11 +55,17 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void SubscribeEvent()
     {
-        _level.OnLevelCompleted += StartLevel;
+        _level.OnLevelCompleted += LevelCompleted;
     }
 
     private void UnsubscribeEvent()
     {
-        _level.OnLevelCompleted -= StartLevel;
+        _level.OnLevelCompleted -= LevelCompleted;
+        _nextButton.onClick.RemoveListener(StartLevel);
+    }
+
+    private void LevelCompleted()
+    {
+        _winPanel.Show();
     }
 }
